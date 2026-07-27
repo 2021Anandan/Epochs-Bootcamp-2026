@@ -1,97 +1,88 @@
-# 🚗 Used Car Data Cleaning & Exploratory Data Analysis
+# 🎵 Spotify Tracks Data Visualization
 
 ## 📌 Overview
 
-This project was completed as **Day 03** of the **Epochs Data Science Bootcamp 2026**.
+This project was completed as **Day 04** of the **Epochs Data Science Bootcamp 2026**.
 
-The objective of this assignment is to perform Exploratory Data Analysis (EDA), identify data quality issues, clean the dataset, and prepare it for Machine Learning.
+The objective is to perform Exploratory Data Analysis (EDA) and visualize the Spotify Tracks dataset using Python visualization libraries.
 
 ---
 
 ## 📂 Dataset
 
-- Dataset: Used Car Price Prediction Dataset
-- Records: 4009
-- Features: 12
-- Target: Car Price Prediction
+- Dataset: Spotify Tracks Dataset
+- Format: CSV
+- Records: Spotify music tracks
+- File: `dataset.csv`
 
 ---
 
-## 📋 Data Quality Issues
-
-- Missing values found in **fuel_type**
-- Missing values found in **accident**
-- Missing values found in **clean_title**
-- No duplicate records found
-
----
-
-## 🧹 Data Cleaning Techniques Applied
-
-- Checked missing values
-- Checked duplicate records
-- Explored numerical features
-- Explored categorical features
-- Saved cleaned dataset
-
----
-
-## 📊 Exploratory Data Analysis (EDA)
-
-The following analyses were performed:
-
-- Dataset overview
-- Data types analysis
-- Missing value analysis
-- Duplicate record analysis
-- Statistical summary
-- Numerical feature exploration
-- Categorical feature exploration
-
----
-
-## 🔧 Technologies Used
+## 🛠 Technologies Used
 
 - Python
 - Pandas
-- NumPy
 - Matplotlib
+- Seaborn
 - Jupyter Notebook
 
 ---
 
-## 💡 Five Key Insights
+## 📊 Workflow
 
-1. Dataset contains **4009** records.
-2. Dataset has **12** columns.
-3. No duplicate records were found.
-4. Missing values exist in **fuel_type**, **accident**, and **clean_title**.
-5. Most vehicles belong to recent model years.
+1. Load Dataset
+2. Data Exploration
+3. Data Cleaning
+4. Exploratory Data Analysis (EDA)
+5. Data Visualization
+6. Insights Generation
+
+---
+
+## 📈 Visualizations Performed
+
+- Distribution Plots
+- Bar Charts
+- Histograms
+- Box Plots
+- Scatter Plots
+- Correlation Analysis
+
+---
+
+## 🔍 Key Observations
+
+- The Spotify dataset contains multiple audio features for songs.
+- Visualizations help identify feature distributions and relationships.
+- Correlation analysis provides insights into relationships between numerical features.
+- Outliers can be detected using box plots.
+- Data visualization improves understanding before machine learning.
+
+---
+
+## 🚀 Future Improvements
+
+- Create interactive dashboards using Plotly.
+- Build visualizations with Power BI or Tableau.
+- Apply feature engineering for predictive modeling.
+- Develop recommendation models using audio features.
 
 ---
 
 ## 📁 Project Structure
 
 ```text
-Day03/
+Day04/
 │
 ├── data/
-├── cleaned_used_cars.csv
-├── task-3.ipynb
+│   ├── dataset.csv
+│   └── spotifytracksdataset.zip
+│
+├── images/
+│
+├── visualization.ipynb
 ├── README.md
-└── requirements.txt
+├── requirements.txt
 ```
-
----
-
-## 🚀 Next Phase
-
-The cleaned dataset will be used for:
-
-- Feature Engineering
-- Feature Selection
-- Machine Learning Model Development
-- Model Evaluation
 
 ---
 
