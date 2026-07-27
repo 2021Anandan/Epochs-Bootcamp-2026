@@ -1,31 +1,104 @@
-# Used Car Price Prediction - Assignment 3
+# 🚗 Used Car Data Cleaning & Exploratory Data Analysis
 
-## Dataset Overview
+## 📌 Overview
 
-This project performs Exploratory Data Analysis (EDA), Data Cleaning, and Feature Engineering on the Used Car Price Prediction dataset.
+This project was completed as **Day 03** of the **Epochs Data Science Bootcamp 2026**.
 
-## Data Quality Issues Identified
+The objective of this assignment is to perform Exploratory Data Analysis (EDA), identify data quality issues, clean the dataset, and prepare it for Machine Learning.
 
-- Missing values found in fuel_type
-- Missing values found in accident
-- Missing values found in clean_title
+---
+
+## 📂 Dataset
+
+- Dataset: Used Car Price Prediction Dataset
+- Records: 4009
+- Features: 12
+- Target: Car Price Prediction
+
+---
+
+## 📋 Data Quality Issues
+
+- Missing values found in **fuel_type**
+- Missing values found in **accident**
+- Missing values found in **clean_title**
 - No duplicate records found
 
-## Cleaning Techniques Applied
+---
+
+## 🧹 Data Cleaning Techniques Applied
 
 - Checked missing values
 - Checked duplicate records
-- Explored numerical and categorical features
+- Explored numerical features
+- Explored categorical features
 - Saved cleaned dataset
 
-## Feature Engineering Performed
+---
 
-Feature engineering will be performed in the next phase.
+## 📊 Exploratory Data Analysis (EDA)
 
-## Five Key Insights
+The following analyses were performed:
 
-1. Dataset contains 4009 records.
-2. Dataset has 12 columns.
+- Dataset overview
+- Data types analysis
+- Missing value analysis
+- Duplicate record analysis
+- Statistical summary
+- Numerical feature exploration
+- Categorical feature exploration
+
+---
+
+## 🔧 Technologies Used
+
+- Python
+- Pandas
+- NumPy
+- Matplotlib
+- Jupyter Notebook
+
+---
+
+## 💡 Five Key Insights
+
+1. Dataset contains **4009** records.
+2. Dataset has **12** columns.
 3. No duplicate records were found.
-4. Missing values exist in fuel_type, accident and clean_title.
-5. Most vehicles are from recent model years.
+4. Missing values exist in **fuel_type**, **accident**, and **clean_title**.
+5. Most vehicles belong to recent model years.
+
+---
+
+## 📁 Project Structure
+
+```text
+Day03/
+│
+├── data/
+├── cleaned_used_cars.csv
+├── task-3.ipynb
+├── README.md
+└── requirements.txt
+```
+
+---
+
+## 🚀 Next Phase
+
+The cleaned dataset will be used for:
+
+- Feature Engineering
+- Feature Selection
+- Machine Learning Model Development
+- Model Evaluation
+
+---
+
+## 👨‍💻 Author
+
+**Anandan M A**
+
+B.Tech Computer Science & Engineering
+
+Epochs Data Science Bootcamp 2026
