@@ -1,54 +1,62 @@
-@'
-# Day 07 - Customer Segmentation using K-Means Clustering
+# Day 07 – Customer Segmentation using K-Means Clustering
 
-## Objective
-Perform customer segmentation using the K-Means clustering algorithm to identify different customer groups based on their annual income and spending score.
+## Participant Details
+
+**Name:** Anandan M A  
+**MUID:** anandanma@mulearn
+
+---
+
+## Business Objective
+
+The objective of this project is to segment mall customers into meaningful groups using the K-Means Clustering algorithm. These customer segments help businesses understand customer behavior and develop targeted marketing strategies.
 
 ## Dataset
-Mall Customer Segmentation Dataset
 
-Features:
+**Dataset:** Mall Customer Segmentation Dataset
+
+**Features**
 - CustomerID
 - Gender
 - Age
 - Annual Income (k$)
-- Spending Score (1-100)
+- Spending Score (1–100)
 
-## Libraries Used
-- pandas
-- numpy
-- matplotlib
-- seaborn
-- scikit-learn
+## Preprocessing
 
-## Workflow
-1. Import libraries
-2. Load dataset
-3. Explore dataset
-4. Check missing values
-5. Encode categorical data
-6. Feature selection
-7. Feature scaling
-8. Elbow Method
-9. K-Means Clustering
-10. PCA Visualization
-11. Cluster Analysis
-12. Business Insights
+- Checked for missing values
+- Encoded the Gender column
+- Selected Annual Income and Spending Score for clustering
+- Applied StandardScaler before K-Means
+
+## Model Implementation
+
+- Elbow Method
+- K-Means Clustering (K = 5)
+- Principal Component Analysis (PCA)
 
 ## Results
+
 - Optimal number of clusters: **5**
-- Customers were successfully segmented into five groups.
-- PCA visualization clearly shows the clusters.
+- Successfully segmented customers into five groups.
+- PCA visualization clearly separated the customer segments.
 
 ## Business Insights
-- Premium customers should receive exclusive offers.
-- High-income customers with low spending can be targeted with promotions.
-- Budget-conscious customers can receive discount campaigns.
-- Customer segmentation improves marketing efficiency and personalization.
 
-## Author
-Anandan M A
+- Premium customers should receive loyalty rewards.
+- High-income, low-spending customers can be targeted with personalized promotions.
+- Budget-conscious customers can be engaged through discounts.
+- Customer segmentation improves personalized marketing and customer retention.
 
-## Bootcamp
-Epochs Data Science Bootcamp 2026
-'@ | Set-Content README.md
+## Conclusion
+
+K-Means clustering successfully identified meaningful customer groups. The segmentation can support better marketing decisions and improve business performance.
+
+## Technologies Used
+
+- Python
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Scikit-learn
