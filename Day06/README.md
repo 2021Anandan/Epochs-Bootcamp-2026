@@ -1,3 +1,9 @@
+## 👤 Student Details
+
+- **Name:** Anandan M A
+- **MUID:** anandanma@mulearn
+
+
 # Customer Churn Prediction
 
 ## Project Overview
