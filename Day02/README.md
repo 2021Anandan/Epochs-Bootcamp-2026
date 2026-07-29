@@ -93,6 +93,14 @@ Northwind-SQL-Analysis/
 - Product Category Revenue
 - Interactive Charts using Matplotlib
 
+
+## SQL Query Execution Results
+
+### 1. Top 10 Selling Products
+
+![Top 10 Selling Products](images/top10_products.png)
+
+---
 ## Output
 
 - SQL Queries
