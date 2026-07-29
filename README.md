@@ -2,43 +2,52 @@
 
 Welcome to my **Epochs Bootcamp 2026** repository.
 
-This repository documents my learning journey, assignments, hands-on projects, datasets, notebooks, and notes completed during the Epochs Data Science & AI Bootcamp.
+This repository documents my learning journey, assignments, hands-on projects, datasets, notebooks, and practical implementations completed during the **Epochs Data Science & AI Bootcamp**.
 
 ---
 
 # 📅 Bootcamp Progress
 
-| Day | Topic | Status |
-|------|-------|--------|
+| Day | Project | Status |
+|------|---------|:------:|
 | Day 01 | Introduction & Python Fundamentals | ⏳ Pending |
-| Day 02 | SQL for Data Science (Northwind Database) | ✅ Completed |
+| Day 02 | Northwind SQL Database Analysis | ✅ Completed |
 | Day 03 | Used Car Price Analysis | ✅ Completed |
-| Day 04 | Coming Soon | 🔜 |
-| Day 05 | Coming Soon | 🔜 |
+| Day 04 | Customer Segmentation using K-Means Clustering | ✅ Completed |
+| Day 05 | Car Price Prediction using Machine Learning | ✅ Completed |
+| Day 06 | Iris Flower Classification | ✅ Completed |
+| Day 07 | Principal Component Analysis (PCA) & Customer Segmentation | ✅ Completed |
+| Day 08 | Decision Tree Model Optimization using GridSearchCV | ✅ Completed |
 
 ---
 
 # 📂 Repository Structure
 
-```
+```text
 Epochs-Bootcamp-2026
 │
-├── Day01
-├── Day02
-│   ├── database
-│   ├── notebooks
-│   ├── queries
+├── Day01/
+├── Day02/
+│   ├── database/
+│   ├── images/
+│   ├── notebooks/
+│   ├── queries/
 │   └── README.md
 │
-├── Day03
-│   ├── data
-│   ├── images
+├── Day03/
+│   ├── data/
+│   ├── images/
 │   ├── task-3.ipynb
 │   └── README.md
 │
-├── Day04
-├── Day05
-└── Resources
+├── Day04/
+├── Day05/
+├── Day06/
+├── Day07/
+├── Day08/
+│
+├── .gitignore
+└── README.md
 ```
 
 ---
@@ -48,9 +57,11 @@ Epochs-Bootcamp-2026
 - Python
 - SQL
 - SQLite
-- Jupyter Notebook
 - Pandas
 - NumPy
+- Matplotlib
+- Scikit-learn
+- Jupyter Notebook
 - Git
 - GitHub
 - VS Code
@@ -59,43 +70,114 @@ Epochs-Bootcamp-2026
 
 # 📚 Projects
 
-## ✅ Day 02 – Northwind SQL Analysis
+## ✅ Day 02 — Northwind SQL Database Analysis
 
-- SQL Queries
-- Database Analysis
+- SQL Query Development
+- Business Data Analysis
+- SQLite Database
+- Python (Pandas)
 - Jupyter Notebook
-- Northwind Database
 
 ---
 
-## ✅ Day 03 – Used Car Price Analysis
+## ✅ Day 03 — Used Car Price Analysis
 
 - Data Cleaning
-- Exploratory Data Analysis
-- Dataset Preparation
-- Jupyter Notebook
+- Exploratory Data Analysis (EDA)
+- Feature Engineering
+- Data Visualization
 
 ---
 
-# 🎯 Learning Objectives
+## ✅ Day 04 — Customer Segmentation
+
+- K-Means Clustering
+- Data Scaling
+- Cluster Visualization
+- Customer Profiling
+
+---
+
+## ✅ Day 05 — Car Price Prediction
+
+- Regression Models
+- Feature Selection
+- Model Evaluation
+- Machine Learning Pipeline
+
+---
+
+## ✅ Day 06 — Iris Flower Classification
+
+- Classification Algorithms
+- Model Training
+- Accuracy Evaluation
+- Confusion Matrix
+
+---
+
+## ✅ Day 07 — PCA & Customer Segmentation
+
+- Principal Component Analysis (PCA)
+- Dimensionality Reduction
+- Cluster Analysis
+- Explained Variance Analysis
+
+---
+
+## ✅ Day 08 — Decision Tree Optimization
+
+- Decision Tree Classifier
+- Hyperparameter Tuning
+- GridSearchCV
+- Feature Importance
+- Confusion Matrix
+- Model Comparison
+
+---
+
+# 🎯 Skills Learned
 
 - Python Programming
-- SQL for Data Science
-- Data Analysis
+- SQL & Database Management
 - Data Cleaning
+- Exploratory Data Analysis (EDA)
+- Data Visualization
+- Machine Learning
+- Classification
+- Regression
+- Clustering
+- Principal Component Analysis (PCA)
+- Model Optimization
+- Feature Engineering
 - Git & GitHub
-- Real-world Dataset Analysis
+- Technical Documentation
+
+---
+
+# 📈 Current Progress
+
+- ✅ 7 Bootcamp projects completed
+- ✅ SQL Database Analysis
+- ✅ Data Analysis
+- ✅ Machine Learning
+- ✅ Clustering
+- ✅ PCA
+- ✅ Decision Tree Optimization
+- 🚧 More projects coming soon...
 
 ---
 
 # 🚀 Future Updates
 
-- Add Day01 project
-- Add Day04 project
-- Add Day05 project
-- More datasets
-- More notebooks
-- Advanced machine learning projects
+- Complete Day 01
+- Continue upcoming Bootcamp projects
+- Deep Learning
+- Natural Language Processing (NLP)
+- Computer Vision
+- Model Deployment
+- Streamlit Dashboards
+- End-to-End Machine Learning Projects
 
 ---
 
@@ -103,11 +185,11 @@ Epochs-Bootcamp-2026
 
 **Anandan M A**
 
-- B.Tech Computer Science & Engineering
-- AI & Data Science Enthusiast
-- Ex-Indian Army
-- Passionate about AI, Embedded Systems, IoT, and Data Science
+- 🎓 B.Tech Computer Science & Engineering
+- 🤖 AI & Data Science Enthusiast
+- 🎖️ Ex-Indian Army
+- 💻 Passionate about Artificial Intelligence, Machine Learning, Embedded Systems, IoT, and Data Science
 
 ---
 
-⭐ This repository will continue to grow as I complete the Epochs Bootcamp.
+⭐ **This repository is continuously updated as I progress through the Epochs Data Science & AI Bootcamp.**
