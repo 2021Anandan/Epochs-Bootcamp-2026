@@ -68,7 +68,19 @@ Epochs-Bootcamp-2026
 
 ---
 
-# 📚 Projects
+# 📚 Projects#
+
+##📚 Completed Projects
+
+| Day | Project | Open |
+|------|---------|------|
+| Day 02 | Northwind SQL Database Analysis | [📂 View Project](Day02/) |
+| Day 03 | Used Car Price Analysis | [📂 View Project](Day03/) |
+| Day 04 | Customer Segmentation using K-Means Clustering | [📂 View Project](Day04/) |
+| Day 05 | Car Price Prediction using Machine Learning | [📂 View Project](Day05/) |
+| Day 06 | Iris Flower Classification | [📂 View Project](Day06/) |
+| Day 07 | Principal Component Analysis (PCA) & Customer Segmentation | [📂 View Project](Day07/) |
+| Day 08 | Decision Tree Model Optimization using GridSearchCV | [📂 View Project](Day08/) |
 
 ## ✅ Day 02 — Northwind SQL Database Analysis
 
