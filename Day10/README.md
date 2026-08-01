@@ -1,5 +1,11 @@
 # 📚 AI Study Assistant
 
+> **Epochs Bootcamp 2026 – Task 10 Submission**
+
+**Name:** Anandan M A  
+**muLearn ID:** YOUR_MULEARN_ID  
+**Technology:** Python • Streamlit • Google Gemini AI
+
 An AI-powered Study Assistant built using **Python**, **Streamlit**, and **Google Gemini AI**.
 
 The application helps students understand concepts, summarize notes, generate quizzes, create revision notes, and answer academic questions through a clean and interactive web interface.
