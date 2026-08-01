@@ -20,7 +20,117 @@ st.set_page_config(
     page_icon="📚",
     layout="wide"
 )
+st.markdown("""
+<style>
 
+/* Background */
+.stApp{
+    background:#f5f7fb;
+}
+
+/* Main Title */
+h1{
+    text-align:center;
+    color:#1f2937;
+    font-weight:800;
+}
+
+/* Sidebar */
+[data-testid="stSidebar"]{
+    background:#eef2ff;
+    padding:20px;
+}
+
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3{
+    color:#374151;
+}
+
+/* Text Area */
+.stTextArea textarea{
+    border-radius:15px;
+    border:2px solid #dbeafe;
+    font-size:16px;
+    padding:15px;
+}
+
+/* Text Input */
+.stTextInput input{
+    border-radius:12px;
+    border:2px solid #dbeafe;
+}
+
+/* Selectbox */
+.stSelectbox div[data-baseweb="select"]{
+    border-radius:12px;
+}
+
+/* Radio */
+.stRadio{
+    padding-bottom:10px;
+}
+
+/* Buttons */
+.stButton>button{
+    width:100%;
+    border:none;
+    border-radius:15px;
+    background:linear-gradient(90deg,#ff4b6e,#ff6b6b);
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    padding:14px;
+    transition:0.3s;
+}
+
+.stButton>button:hover{
+    transform:scale(1.02);
+    background:linear-gradient(90deg,#ff416c,#ff4b2b);
+}
+
+/* Success Message */
+.stSuccess{
+    border-radius:15px;
+}
+
+/* Error */
+.stError{
+    border-radius:15px;
+}
+
+/* Warning */
+.stWarning{
+    border-radius:15px;
+}
+
+/* Info Card */
+.info-card{
+    background:#dbeafe;
+    padding:18px;
+    border-radius:15px;
+    color:#1e3a8a;
+    margin-top:20px;
+}
+
+/* Output Box */
+.output-box{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0px 5px 15px rgba(0,0,0,0.08);
+}
+
+/* Footer */
+.footer{
+    text-align:center;
+    color:gray;
+    margin-top:40px;
+    font-size:14px;
+}
+
+</style>
+""", unsafe_allow_html=True)
 st.title("📚 AI Study Assistant")
 st.write("Welcome to the AI Study Assistant powered by Google Gemini!")
 
