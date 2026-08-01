@@ -1,11 +1,14 @@
 # 🚗 Car Price Prediction Web App
 
-## Participant Details
-
-- **Name:** Anandan M A
-- **MUID:** anandanma@mulearn
-
 ---
+
+## 👨‍💻 Author
+
+**Anandan M A**
+
+- **µLearn ID:** anandanma@mulearn
+- **GitHub:** https://github.com/2021Anandan
+- **Live Demo:** https://epochs-bootcamp-2026-zpi2mey5ujdfgxtxite26w.streamlit.app
 
 ## Project Overview
 
