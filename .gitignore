@@ -31,3 +31,5 @@ build/
 *.tmp
 *.bak
 *.sqbpro
+# Large ML model
+Day09/model/model.pkl
