@@ -158,29 +158,31 @@ def main():
 
 st.subheader("Chat")
 
-# Session state
 if "history" not in st.session_state:
     st.session_state.history = []
 
-# FORM (important)
-with st.form("chat_form", clear_on_submit=True):
+if "input_text" not in st.session_state:
+    st.session_state.input_text = ""
 
-    user_input = st.text_input("Ask a question")
+st.text_input("Ask a question", key="input_text")
 
-    submitted = st.form_submit_button("Send")
+if st.button("Send"):
 
-    if submitted and user_input.strip() != "":
+    if st.session_state.input_text.strip() != "":
 
         st.session_state.history, sources = chat_interface(
-            user_input,
+            st.session_state.input_text,
             st.session_state.history
         )
 
-# Display chat
+        st.session_state.input_text = ""
+
+    else:
+        st.warning("Please enter a question")
+
 for chat in st.session_state.history:
     st.write("🧑 You:", chat["user"])
     st.write("🤖 Bot:", chat["bot"])
 
-# Show sources
 if "sources" in locals():
     st.markdown(sources)
