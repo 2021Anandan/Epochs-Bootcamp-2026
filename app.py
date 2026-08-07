@@ -152,54 +152,35 @@ def main():
         result = process_uploaded_pdf(uploaded_file)
         st.info(result)
 
-    # --------------------------------------
-    # Chat Section (FINAL FIXED)
-    # --------------------------------------
-    st.subheader("Chat")
+    # ==========================================
+# CHAT SECTION (FINAL FIX WITH FORM)
+# ==========================================
 
-    # Session state
-    if "history" not in st.session_state:
-        st.session_state.history = []
+st.subheader("Chat")
 
-    if "input_text" not in st.session_state:
-        st.session_state.input_text = ""
+# Session state
+if "history" not in st.session_state:
+    st.session_state.history = []
 
-    # Input box
-    st.text_input("Ask a question", key="input_text")
+# FORM (important)
+with st.form("chat_form", clear_on_submit=True):
 
-    # Send button
-    if st.button("Send"):
+    user_input = st.text_input("Ask a question")
 
-        if st.session_state.input_text.strip() != "":
+    submitted = st.form_submit_button("Send")
 
-            st.session_state.history, sources = chat_interface(
-                st.session_state.input_text,
-                st.session_state.history
-            )
+    if submitted and user_input.strip() != "":
 
-            # Clear input
-            st.session_state.input_text = ""
+        st.session_state.history, sources = chat_interface(
+            user_input,
+            st.session_state.history
+        )
 
-        else:
-            st.warning("Please enter a question")
+# Display chat
+for chat in st.session_state.history:
+    st.write("🧑 You:", chat["user"])
+    st.write("🤖 Bot:", chat["bot"])
 
-    # Display chat history
-    for chat in st.session_state.history:
-        st.write("🧑 You:", chat["user"])
-        st.write("🤖 Bot:", chat["bot"])
-
-    # Show sources
-    if "sources" in locals():
-        st.markdown(sources)
-
-    # --------------------------------------
-    # Controls
-    # --------------------------------------
-    st.subheader("Controls")
-
-    if st.button("Clear Chat"):
-        st.session_state.history = clear_chat()
-
-    if st.button("Clear Database"):
-        msg = clear_database()
-        st.warning(msg)
+# Show sources
+if "sources" in locals():
+    st.markdown(sources)
