@@ -1,12 +1,13 @@
 """
-Main Gradio user interface application entry point for the Production RAG PDF Q&A system.
+Main Streamlit application for Production RAG PDF Q&A system
 """
 
 import os
 import shutil
 from pathlib import Path
-from typing import Tuple, List, Dict
-import gradio as gr
+from typing import List, Dict
+
+import streamlit as st
 
 from loader import load_pdf_documents
 from splitter import split_documents
@@ -17,25 +18,25 @@ from memory import clear_session_history
 from utils import DATA_DIR, CHROMA_DB_DIR, logger
 
 # ==========================================
-# API KEY CHECK (Fallback Safety)
+# API KEY CHECK
 # ==========================================
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
-if not GOOGLE_API_KEY:
-    print("⚠️ WARNING: GOOGLE_API_KEY is not set. App will run in limited mode.")
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 # ==========================================
 # GLOBAL STATE
 # ==========================================
+
 current_vectorstore = None
 embedding_model_instance = None
 
 # ==========================================
 # INITIALIZATION
 # ==========================================
-def initialize_system() -> None:
-    """Initialize embedding model and load existing vector store."""
+
+def initialize_system():
     global current_vectorstore, embedding_model_instance
+
     try:
         embedding_model_instance = get_embedding_model()
         current_vectorstore = load_vector_store(embedding_model_instance)
@@ -48,168 +49,132 @@ def initialize_system() -> None:
     except Exception as e:
         logger.error(f"Initialization error: {str(e)}", exc_info=True)
 
-
-initialize_system()
-
 # ==========================================
 # PDF PROCESSING
 # ==========================================
-def process_uploaded_pdf(file_obj) -> str:
+
+def process_uploaded_pdf(file_obj):
     global current_vectorstore, embedding_model_instance
 
-    # API KEY FALLBACK
     if not GOOGLE_API_KEY:
-        return "⚠️ API key missing. Cannot process PDF."
+        return "⚠️ API key missing."
 
     if file_obj is None:
-        return "⚠️ Please upload a valid PDF file."
+        return "⚠️ Upload a PDF."
 
     try:
-        file_path = Path(file_obj.name)
-        target_path = DATA_DIR / file_path.name
-        shutil.copy(file_path, target_path)
+        file_path = DATA_DIR / file_obj.name
 
-        docs = load_pdf_documents(target_path)
-        if not docs:
-            return "❌ Failed to load PDF."
+        with open(file_path, "wb") as f:
+            f.write(file_obj.getbuffer())
 
+        docs = load_pdf_documents(file_path)
         chunks = split_documents(docs)
-        if not chunks:
-            return "❌ No chunks created."
 
         if not embedding_model_instance:
             embedding_model_instance = get_embedding_model()
 
         current_vectorstore = create_vector_store(chunks, embedding_model_instance)
 
-        return f"✅ Indexed {len(chunks)} chunks successfully."
+        return f"✅ Indexed {len(chunks)} chunks"
 
     except Exception as e:
         logger.error(str(e), exc_info=True)
         return f"❌ Error: {str(e)}"
 
 # ==========================================
-# CHAT HANDLER
+# CHAT
 # ==========================================
-def chat_interface_handler(user_message: str, history: List[Dict[str, str]]):
 
-    # API KEY FALLBACK
-    if not GOOGLE_API_KEY:
-        history.append({"role": "user", "content": user_message})
-        history.append({
-            "role": "assistant",
-            "content": "⚠️ API key not configured. Cannot generate AI response."
-        })
-        return "", history, "⚠️ API key missing."
-
+def chat_interface(user_input, history):
     global current_vectorstore
 
-    if not user_message.strip():
-        return "", history, "No query provided."
+    if not GOOGLE_API_KEY:
+        return history, "⚠️ API key missing."
 
     if current_vectorstore is None:
-        msg = "⚠️ Upload and process a PDF first."
-        history.append({"role": "user", "content": user_message})
-        history.append({"role": "assistant", "content": msg})
-        return "", history, "No database."
+        return history, "⚠️ Upload PDF first."
 
     try:
         answer, sources = get_rag_response(
             current_vectorstore,
-            user_message,
+            user_input,
             session_id="default_user"
         )
 
-        history.append({"role": "user", "content": user_message})
-        history.append({"role": "assistant", "content": answer})
+        history.append({"user": user_input, "bot": answer})
 
-        formatted_sources = "### 📚 Sources\n\n"
+        source_text = "### 📚 Sources\n\n"
+        for i, src in enumerate(sources, 1):
+            source_text += f"[{i}] {src['source']} (Page {src['page']})\n"
 
-        if sources:
-            for i, src in enumerate(sources, 1):
-                formatted_sources += f"**[{i}] {src['source']} (Page {src['page']})**\n"
-                formatted_sources += f"> {src['content']}\n\n"
-        else:
-            formatted_sources += "No sources found."
-
-        return "", history, formatted_sources
+        return history, source_text
 
     except Exception as e:
-        logger.error(str(e), exc_info=True)
-        return "", history, f"❌ Error: {str(e)}"
+        return history, f"❌ Error: {str(e)}"
 
 # ==========================================
 # CLEAR FUNCTIONS
 # ==========================================
-def clear_conversation():
+
+def clear_chat():
     clear_session_history("default_user")
-    return [], "Conversation cleared."
+    return []
 
 def clear_database():
     global current_vectorstore
     current_vectorstore = None
 
-    try:
-        if CHROMA_DB_DIR.exists():
-            shutil.rmtree(CHROMA_DB_DIR)
-            CHROMA_DB_DIR.mkdir(parents=True, exist_ok=True)
+    if CHROMA_DB_DIR.exists():
+        shutil.rmtree(CHROMA_DB_DIR)
+        CHROMA_DB_DIR.mkdir(parents=True, exist_ok=True)
 
-        return "🧹 Database cleared."
-
-    except Exception as e:
-        return f"❌ Error: {str(e)}"
+    return "Database cleared"
 
 # ==========================================
-# UI
+# MAIN STREAMLIT UI
 # ==========================================
-app_theme = gr.themes.Soft()
 
-with gr.Blocks(theme=app_theme) as demo:
+def main():
+    st.set_page_config(page_title="RAG PDF Chat", layout="wide")
 
-    # API WARNING UI
-    if not GOOGLE_API_KEY:
-        gr.Markdown(
-            "⚠️ **API Key Missing**\n\n"
-            "App will run in limited mode. AI responses disabled."
+    st.title("📄 Production PDF Q&A Assistant")
+    st.write("Developed by ANANDAN M A")
+
+    initialize_system()
+
+    # Upload Section
+    st.subheader("Upload PDF")
+    uploaded_file = st.file_uploader("Choose PDF", type=["pdf"])
+
+    if st.button("Process PDF"):
+        result = process_uploaded_pdf(uploaded_file)
+        st.info(result)
+
+    # Chat Section
+    st.subheader("Chat")
+
+    if "history" not in st.session_state:
+        st.session_state.history = []
+
+    user_input = st.text_input("Ask a question")
+
+    if st.button("Send"):
+        st.session_state.history, sources = chat_interface(
+            user_input,
+            st.session_state.history
         )
 
-    gr.Markdown("# 📄 Production PDF Q&A Assistant")
-    gr.Markdown("Developed by ANANDAN M A")
+        if st.session_state.history:
+            st.write(st.session_state.history[-1]["bot"])
+            st.markdown(sources)
 
-    with gr.Row():
+    # Controls
+    st.subheader("Controls")
 
-        # LEFT PANEL
-        with gr.Column(scale=1):
-            gr.Markdown("### Upload PDF")
-            pdf_input = gr.File(file_types=[".pdf"])
-            upload_btn = gr.Button("Process PDF")
-            status_box = gr.Textbox(label="Status")
+    if st.button("Clear Chat"):
+        st.session_state.history = clear_chat()
 
-            gr.Markdown("### Controls")
-            clear_chat_btn = gr.Button("Clear Chat")
-            clear_db_btn = gr.Button("Wipe DB")
-            db_status = gr.Textbox(label="DB Status")
-
-        # RIGHT PANEL
-        with gr.Column(scale=2):
-            chatbot = gr.Chatbot(height=400)
-            msg = gr.Textbox(label="Ask question")
-            sources_box = gr.Markdown()
-
-    # EVENTS
-    upload_btn.click(process_uploaded_pdf, pdf_input, status_box)
-
-    msg.submit(
-        chat_interface_handler,
-        inputs=[msg, chatbot],
-        outputs=[msg, chatbot, sources_box]
-    )
-
-    clear_chat_btn.click(clear_conversation, outputs=[chatbot, status_box])
-    clear_db_btn.click(clear_database, outputs=db_status)
-
-# ==========================================
-# RUN
-# ==========================================
-if __name__ == "__main__":
-    demo.launch(server_name="0.0.0.0", server_port=7860)
+    if st.button("Clear Database"):
+        msg = clear_database()
+        st.warning(msg)
