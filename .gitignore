@@ -1,35 +1,25 @@
-# Python
+# Ignore folders
+Day01/
+Day02/
+Day03/
+Day04/
+Day05/
+Day06/
+Day07/
+Day08/
+Day09/
+Day10/
+
+.venv/
 __pycache__/
-*.py[cod]
+.devcontainer/
+chroma_db/
+data/
+
+# Ignore system files
+*.pyc
 *.pyo
 *.pyd
-.venv/
-venv/
-env/
-
-# Jupyter
-.ipynb_checkpoints/
-
-# VS Code
-.vscode/
-
-# Logs
+*.db
 *.log
-
-# OS Files
-Thumbs.db
-.DS_Store
-
-# Environment Variables
 .env
-
-# Build Files
-dist/
-build/
-
-# Temporary Files
-*.tmp
-*.bak
-*.sqbpro
-# Large ML model
-Day09/model/model.pkl
