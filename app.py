@@ -5,8 +5,6 @@ Main Streamlit application for Production RAG PDF Q&A system
 import os
 import shutil
 from pathlib import Path
-from typing import List, Dict
-
 import streamlit as st
 
 from loader import load_pdf_documents
@@ -18,7 +16,7 @@ from memory import clear_session_history
 from utils import DATA_DIR, CHROMA_DB_DIR, logger
 
 # ==========================================
-# API KEY CHECK
+# API KEY
 # ==========================================
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
@@ -44,7 +42,7 @@ def initialize_system():
         if current_vectorstore:
             logger.info("Loaded existing vector store.")
         else:
-            logger.info("No vector store found. Ready for upload.")
+            logger.info("No vector store found.")
 
     except Exception as e:
         logger.error(f"Initialization error: {str(e)}", exc_info=True)
@@ -83,7 +81,7 @@ def process_uploaded_pdf(file_obj):
         return f"❌ Error: {str(e)}"
 
 # ==========================================
-# CHAT
+# CHAT FUNCTION
 # ==========================================
 
 def chat_interface(user_input, history):
@@ -132,7 +130,7 @@ def clear_database():
     return "Database cleared"
 
 # ==========================================
-# MAIN STREAMLIT UI
+# MAIN UI
 # ==========================================
 
 def main():
@@ -143,33 +141,60 @@ def main():
 
     initialize_system()
 
+    # --------------------------------------
     # Upload Section
+    # --------------------------------------
     st.subheader("Upload PDF")
+
     uploaded_file = st.file_uploader("Choose PDF", type=["pdf"])
 
     if st.button("Process PDF"):
         result = process_uploaded_pdf(uploaded_file)
         st.info(result)
 
-    # Chat Section
+    # --------------------------------------
+    # Chat Section (FINAL FIXED)
+    # --------------------------------------
     st.subheader("Chat")
 
+    # Session state
     if "history" not in st.session_state:
         st.session_state.history = []
 
-    user_input = st.text_input("Ask a question")
+    if "input_text" not in st.session_state:
+        st.session_state.input_text = ""
 
+    # Input box
+    st.text_input("Ask a question", key="input_text")
+
+    # Send button
     if st.button("Send"):
-        st.session_state.history, sources = chat_interface(
-            user_input,
-            st.session_state.history
-        )
 
-        if st.session_state.history:
-            st.write(st.session_state.history[-1]["bot"])
-            st.markdown(sources)
+        if st.session_state.input_text.strip() != "":
 
+            st.session_state.history, sources = chat_interface(
+                st.session_state.input_text,
+                st.session_state.history
+            )
+
+            # Clear input
+            st.session_state.input_text = ""
+
+        else:
+            st.warning("Please enter a question")
+
+    # Display chat history
+    for chat in st.session_state.history:
+        st.write("🧑 You:", chat["user"])
+        st.write("🤖 Bot:", chat["bot"])
+
+    # Show sources
+    if "sources" in locals():
+        st.markdown(sources)
+
+    # --------------------------------------
     # Controls
+    # --------------------------------------
     st.subheader("Controls")
 
     if st.button("Clear Chat"):
