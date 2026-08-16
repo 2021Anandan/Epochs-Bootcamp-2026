@@ -1,6 +1,7 @@
 streamlit
 langchain
-langchain-google-genai
-chromadb
-pypdf
+langchain-community
 sentence-transformers
+chromadb
+google-generativeai
+pypdf
